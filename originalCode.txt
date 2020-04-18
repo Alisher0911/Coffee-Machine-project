@@ -1,0 +1,174 @@
+public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.println("Write how many cups of coffee you will need: ");
+        System.out.println("> ");
+        int cups = in.nextInt();
+        // 200 ml of water, 50 ml of milk, and 15 g of coffee beans.
+        int water = cups * 200;
+        int milk = cups * 50;
+        int beans = cups * 15;
+        System.out.println("For " + cups + " cups of coffee  you will need: ");
+        System.out.println(water + " ml of water");
+        System.out.println(milk + " ml of milk");
+        System.out.println(beans + " g of coffee beans");
+    }
+
+
+
+public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.println("Write how many ml of water the coffee machine has: ");
+        System.out.print("> ");
+        int water = in.nextInt();
+        System.out.println("Write how many ml of milk the coffee machine has: ");
+        System.out.print("> ");
+        int milk = in.nextInt();
+        System.out.println("Write how many grams of coffee beans the coffee machine has: ");
+        System.out.print("> ");
+        int beans = in.nextInt();
+        System.out.println("Write how many cups of coffee you will need: ");
+        System.out.print("> ");
+        int cups = in.nextInt();
+        
+        int neededWater = 200 * cups;
+        int neededMilk = 50 * cups;
+        int neededBeans = 15 * cups;
+        
+        int allWater = water / 200;
+        int allMilk = milk / 50;
+        int allBeans = beans / 15;
+        int maxCups = Math.min(Math.min(allWater, allMilk), allBeans);
+        
+        int addCups = maxCups - cups;
+        
+        boolean boolWater = water >= neededWater;
+        boolean boolMilk = milk >= neededMilk;
+        boolean boolBeans = beans >= neededBeans;
+        
+        String result = "Yes, I can make that amount of coffee";
+        if (boolWater && boolMilk && boolBeans) {
+            if (maxCups - cups > 0) System.out.println(result + " (and even " + addCups + " more than that)");
+            else System.out.println(result);
+        }
+        else {
+            System.out.println("No, I can make only " + maxCups + " cup(s) of coffee");
+        }
+    }
+
+
+
+
+public static void main(String[] args) {
+    int water = 400;
+    int milk = 540;
+    int beans = 120;
+    int cups = 9;
+    int money = 550;
+
+    Scanner in = new Scanner(System.in);
+    while (true) {
+        System.out.println("Write action (buy, fill, take, remaining, action): ");
+        System.out.print("> ");
+        String choice = in.next();
+        switch(choice) {
+            case "buy":
+                System.out.println();
+                System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back - to main menu:");
+                System.out.print("> ");
+                Scanner ch = new Scanner(System.in);
+                String coffee = ch.next();
+                switch(coffee) {
+                    case "1":
+                        if (water < 250) System.out.println("Sorry, not enough water!");
+                        else if (beans < 16) System.out.println("Sorry, not enough coffee beans!");
+                        else if (cups < 1) System.out.println("Sorry, not enough cups!");
+                        else {
+                            water = water - 250;
+                            beans = beans - 16;
+                            money = money + 4;
+                            cups--;
+                            System.out.println("I have enough resources, making you a coffee!");
+                        }
+                        break;
+                    case "2":
+                        if (water < 350) System.out.println("Sorry, not enough water!");
+                        else if (milk < 75) System.out.println("Sorry, not enough milk!");
+                        else if (beans < 20) System.out.println("Sorry, not enough coffee beans!");
+                        else if (cups < 1) System.out.println("Sorry, not enough cups!");
+                        else {
+                            water = water - 350;
+                            milk = milk - 75;
+                            beans = beans - 20;
+                            money = money + 7;
+                            cups--;
+                            System.out.println("I have enough resources, making you a coffee!");
+                        }
+                        break;
+                    case "3":
+                        if (water < 200) System.out.println("Sorry, not enough water!");
+                        else if (milk < 100) System.out.println("Sorry, not enough milk!");
+                        else if (beans < 12) System.out.println("Sorry, not enough coffee beans!");
+                        else if (cups < 1) System.out.println("Sorry, not enough cups!");
+                        else {
+                            water = water - 200;
+                            milk = milk - 100;
+                            beans = beans - 12;
+                            money = money + 6;
+                            cups--;
+                            System.out.println("I have enough resources, making you a coffee!");
+                        }
+                        break;
+                    case "back":
+                        continue;
+                }
+                System.out.println();
+                break;
+
+            case "fill":
+                System.out.println();
+                Scanner add = new Scanner(System.in);
+
+                System.out.println("Write how many ml of water do you want to add: ");
+                System.out.print("> ");
+                int fillWater = add.nextInt();
+                water += fillWater;
+
+                System.out.println("Write how many ml of milk do you want to add: ");
+                System.out.print("> ");
+                int fillMilk = add.nextInt();
+                milk += fillMilk;
+
+                System.out.println("Write how many grams of coffee beans do you want to add: ");
+                System.out.print("> ");
+                int fillBeans = add.nextInt();
+                beans += fillBeans;
+
+                System.out.println("Write how many disposable cups of coffee do you want to add: ");
+                System.out.print("> ");
+                int fillCups = add.nextInt();
+                cups += fillCups;
+
+                System.out.println();
+                break;
+
+            case "take":
+                System.out.println("I gave you $" + money);
+                money = 0;
+                System.out.println();
+                break;
+
+            case "remaining":
+                System.out.println("The coffee machine has:");
+                System.out.println(water + " of water");
+                System.out.println(milk + " of milk");
+                System.out.println(beans + " of coffee beans");
+                System.out.println(cups + " of disposable cups");
+                System.out.println("$" + money + " of money");
+                System.out.println();
+                break;
+
+            case "exit":
+                System.exit(0);
+        }
+    }
+}
